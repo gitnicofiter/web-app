@@ -54,6 +54,18 @@
       <td mat-footer-cell class="r-amount" *matFooterCellDef>&nbsp;</td>
     </ng-container>
 
+    <ng-container matColumnDef="balanceOfLoanMinus">
+      <th mat-header-cell class="r-amount mat-header-cell" *matHeaderCellDef>
+        {{ 'labels.heading.Principal Amount' | translate }}
+      </th>
+      <td mat-cell class="r-amount" *matCellDef="let item" [ngClass]="installmentStyle(item)">
+        <ng-container *ngIf="!item.period">
+          {{ item.principalLoanBalanceOutstanding - item.feeChargesDue | formatNumber }}
+        </ng-container>
+      </td>
+      <td mat-footer-cell class="r-amount" *matFooterCellDef>&nbsp;</td>
+    </ng-container>
+
     <ng-container matColumnDef="principalDue">
       <th mat-header-cell class="r-amount mat-header-cell" *matHeaderCellDef>
         {{ 'labels.inputs.Principal Due' | translate }}
